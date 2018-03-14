@@ -1,5 +1,9 @@
-import scala.io.Source
+package com.data_in_model_out.example
+
+
 import java.io._
+
+import scala.io.Source
 
 /**
   * Created by peterjmyers on 3/10/18.
@@ -67,7 +71,7 @@ object MiniChallenges extends App{
 
   // read from file
 
-  val lines = Source.fromFile("src/main/scala/MiniChallenges.scala").getLines().toList
+  val lines = Source.fromFile("src/main/scala/HelloWorld.scala").getLines().toList
   for (line <- lines) { println(line) }
 
   // write to file
@@ -102,6 +106,30 @@ object MiniChallenges extends App{
   println(cat.getName())
   println(cat.age)
 
-  
+  // trait
+
+  trait Bar {
+    def foo(): Unit = println("foo")
+  }
+
+  class Example extends Bar {
+    private var a = "a"
+    var b = "b"
+  }
+
+  var e = new Example()
+  e.foo()
+  println(e.b) // e.a is hidden
+
+  var foobar: Option[String] = Option("a")
+  println(foobar)
+  foobar = None
+  println(foobar)
+
+  var expression = "^(.*) ".r
+  var string = "abcdef ghijklm"
+  for (s <- expression findAllIn string)
+    println(s)
+
 
 }
