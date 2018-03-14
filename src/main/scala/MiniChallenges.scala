@@ -1,3 +1,6 @@
+import scala.io.Source
+import java.io._
+
 /**
   * Created by peterjmyers on 3/10/18.
   */
@@ -62,7 +65,43 @@ object MiniChallenges extends App{
   }
   println(x10)
 
-  val lines = Source.fromFile(args(0)).getLines().toList
-  for (line <- lines) { ... }
+  // read from file
+
+  val lines = Source.fromFile("src/main/scala/MiniChallenges.scala").getLines().toList
+  for (line <- lines) { println(line) }
+
+  // write to file
+
+  val pw = new PrintWriter(new File("hello.txt" )); pw.write("Hello, world"); pw.close
+
+  def foo(a: Int): Int = {
+    a + 1
+  }
+
+  println(s"${foo(5)}")
+
+  case class Dog(name: String)
+  var dog = Dog("Ralf")
+  println(dog)
+
+  // inheritance
+
+  abstract class Animal {
+    def name: String
+    def age: Int
+    def getName(): String =  {
+      return name
+    }
+  }
+
+  case class Cat(val name: String, val age: Int)
+    extends Animal
+
+  val cat = Cat("Snickers", 3)
+  println(cat)
+  println(cat.getName())
+  println(cat.age)
+
+  
 
 }
